@@ -1,0 +1,2 @@
+# scoozie
+Scala oozie DSL
