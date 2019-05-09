@@ -18,6 +18,5 @@ lazy val root = (project in file(".")).
     }).
   settings(
     scalaxbDispatchVersion in (Compile, scalaxb) := dispatchV,
-    scalaxbPackageName in (Compile, scalaxb)     := "generated"
-    // logLevel in (Compile, scalaxb) := Level.Debug
+    scalaxbPackageName in (Compile, scalaxb)     := "org.scoozie.oozie"
   )
