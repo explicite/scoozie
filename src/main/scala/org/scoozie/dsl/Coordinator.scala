@@ -11,7 +11,7 @@ trait Coordinator extends COORDINATORu45APP {
   val xml: String =
     scalaxb
       .toXML[COORDINATORu45APP](oozieCoord, "oozie-coordinator", org.scoozie.oozie.defaultScope)
-      .toString
+      .text
 }
 
 object Coordinator {
@@ -30,25 +30,5 @@ object Coordinator {
   type DataOut = DATAOUT //TODO
   type Workflow = WORKFLOW //TODO
   type Configuration = CONFIGURATIONType //TODO
-
-  def apply(oozieCoordinator: COORDINATORu45APP): Coordinator = {
-    new Coordinator {
-      override val oozieCoord = COORDINATORu45APP(
-        parameters = ???,
-        controls = ???,
-        datasets = ???,
-        inputu45events = ???,
-        inputu45logic = ???,
-        outputu45events = ???,
-        action = ???
-      )
-    }
-  }
-
-  def unapply(string: String): Coordinator = {
-    val xml = XML.loadString(string)
-    val oozieCoordinator = scalaxb.fromXML[COORDINATORu45APP](xml)
-    Coordinator(oozieCoordinator)
-  }
 
 }
