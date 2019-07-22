@@ -1,7 +1,6 @@
 package org.scoozie
 
 package object dsl {
-
-  //TODO
-
+  type ActionOption = scalaxb.DataRecord[String]
+  type ActionFlag = org.scoozie.oozie.FLAGType
 }
