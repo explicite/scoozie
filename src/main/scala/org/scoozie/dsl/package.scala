@@ -3,9 +3,9 @@ import oozie._
 
 package object dsl {
 
-  type ActionOption = scalaxb.DataRecord[String]
-  object ActionOption {
-    def apply(value: String): ActionOption = {
+  type StringOption = scalaxb.DataRecord[String]
+  object StringOption {
+    def apply(value: String): StringOption = {
       scalaxb.DataRecord(None, Some("args"), value)
     }
   }
@@ -18,4 +18,55 @@ package object dsl {
     val Yes = CaptureOutput(Some(new ActionFlag))
     val No = CaptureOutput(None)
   }
+
+  implicit class Prepare(prepare: PREPAREType2) {
+    def delete(path: String): Prepare = {
+      prepare.copy(prepare.delete :+ DELETEType2(Map("@path" -> StringOption(path))), prepare.mkdir)
+    }
+
+    def mkdir(path: String): Prepare = {
+      prepare.copy(prepare.delete, prepare.mkdir :+ MKDIRType2(Map("@path" -> StringOption(path))))
+    }
+    val ooziePREPAREType2 = prepare
+  }
+
+  object Prepare {
+    def delete(path: String): Prepare = {
+      PREPAREType2(Seq(DELETEType2(Map("@path" -> StringOption(path)))), Seq.empty[MKDIRType2])
+    }
+
+    def mkdir(path: String): Prepare = {
+      PREPAREType2(Seq.empty[DELETEType2], Seq(MKDIRType2(Map("@path" -> StringOption(path)))))
+    }
+  }
+
+  implicit class Launcher(launcher: LAUNCHERType2) {
+    val oozieLAUNCHERType2 = launcher
+    def apply(
+      memoryMb: Option[Int],
+      vCores: Option[Int],
+      javaOpts: Option[String],
+      env: Option[String],
+      queue: Option[String],
+      sharedLib: Option[String],
+      viewAcl: Option[String],
+      modifyAcl: Option[String]
+    ): Launcher = {
+      LAUNCHERType2(
+        Seq(
+          memoryMb.map(scalaxb.DataRecord(None, Some("memory.mb"), _)),
+          vCores.map(scalaxb.DataRecord(None, Some("vcores"), _)),
+          javaOpts.map(scalaxb.DataRecord(None, Some("java-opts"), _)),
+          env.map(scalaxb.DataRecord(None, Some("env"), _)),
+          queue.map(scalaxb.DataRecord(None, Some("queue"), _)),
+          sharedLib.map(scalaxb.DataRecord(None, Some("sharedlib"), _)),
+          viewAcl.map(scalaxb.DataRecord(None, Some("view-acl"), _)),
+          modifyAcl.map(scalaxb.DataRecord(None, Some("modify-acl"), _))
+        ).flatten
+      )
+
+    }
+
+  }
+
 }

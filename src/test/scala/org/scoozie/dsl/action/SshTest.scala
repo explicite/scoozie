@@ -1,7 +1,7 @@
 package org.scoozie.dsl.action
 
 import org.scalatest.{FlatSpec, GivenWhenThen, Matchers}
-import org.scoozie.dsl.{ActionOption, CaptureOutput}
+import org.scoozie.dsl.{StringOption, CaptureOutput}
 
 class SshTest extends FlatSpec with GivenWhenThen with Matchers {
 
@@ -30,8 +30,8 @@ class SshTest extends FlatSpec with GivenWhenThen with Matchers {
     val scope = scalaxb.toScope(Some(scopeKey) -> scopeValue)
     val host= "foo@bar.com"
     val command = "uploaddata"
-    val args1 = ActionOption("jdbc:derby://bar.com:1527/myDB")
-    val args2 = ActionOption("hdfs://foobar.com:9001/usr/tucu/myData")
+    val args1 = StringOption("jdbc:derby://bar.com:1527/myDB")
+    val args2 = StringOption("hdfs://foobar.com:9001/usr/tucu/myData")
     val captureOutput = CaptureOutput.Yes
 
     val sshInString = s"""<ssh xmlns:$scopeKey="$scopeValue"><ssh:host>$host</ssh:host><ssh:command>$command</ssh:command><args>jdbc:derby://bar.com:1527/myDB</args><args>hdfs://foobar.com:9001/usr/tucu/myData</args><ssh:capture-output/></ssh>"""

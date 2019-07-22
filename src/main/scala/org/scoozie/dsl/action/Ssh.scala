@@ -14,7 +14,7 @@ object Ssh {
   def apply(
     host: String,
     command: String,
-    options: Seq[ActionOption],
+    options: Seq[StringOption],
     captureOutput: CaptureOutput
   ): Ssh = new Ssh {
     override protected val data = ACTIONType7(
