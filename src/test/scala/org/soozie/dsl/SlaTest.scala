@@ -5,7 +5,9 @@ import org.scoozie.dsl.Sla
 
 class SlaTest extends FlatSpec with GivenWhenThen with Matchers {
 
-  "Sla" should "generate correct xml" in new Fixture {
+  behavior of "Sla"
+
+  it should "apply" in new fixture {
     Given("SLA object")
     val sla = Sla(
       nominalTime = nominalTime,
@@ -24,7 +26,7 @@ class SlaTest extends FlatSpec with GivenWhenThen with Matchers {
   }
 
 
-  trait Fixture {
+  trait fixture {
     val scopeKey = "sla"
     val scopeValue = "uri:oozie:sla:0.2"
     val scope = scalaxb.toScope(Some(scopeKey) -> scopeValue)

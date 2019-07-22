@@ -15,13 +15,13 @@ object Ssh {
     host: String,
     command: String,
     options: Seq[ActionOption],
-    captureOutput: ActionFlag
+    captureOutput: CaptureOutput
   ): Ssh = new Ssh {
     override protected val data = ACTIONType7(
       host = host,
       command = command,
       actiontype7option = options,
-      captureu45output = Option(captureOutput)
+      captureu45output = captureOutput.value
     )
   }
 }
