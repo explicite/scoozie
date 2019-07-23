@@ -18,7 +18,7 @@ class EmailTest extends FlatSpec with GivenWhenThen with Matchers {
       attachment = Some(attachment)
     )
 
-    When("XML is generate")
+    When("XML is generated")
     val xmlGenerated = email.toXML(scope).toString()
 
     Then("is correct")
@@ -36,7 +36,8 @@ class EmailTest extends FlatSpec with GivenWhenThen with Matchers {
     val body = "email body"
     val contentType = "content type"
     val attachment = "attachment"
-    val emailInString = s"""<email xmlns:$scopeKey="$scopeValue"><email:to>$to</email:to><email:cc>$cc</email:cc><email:bcc>$bcc</email:bcc><email:subject>$subject</email:subject><email:body>$body</email:body><email:content_type>$contentType</email:content_type><email:attachment>$attachment</email:attachment></email>""".mkString
+    val emailInString =
+      s"""<email xmlns:$scopeKey="$scopeValue"><email:to>$to</email:to><email:cc>$cc</email:cc><email:bcc>$bcc</email:bcc><email:subject>$subject</email:subject><email:body>$body</email:body><email:content_type>$contentType</email:content_type><email:attachment>$attachment</email:attachment></email>""".mkString
   }
 
 }

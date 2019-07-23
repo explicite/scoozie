@@ -42,6 +42,9 @@ package object dsl {
 
   implicit class Launcher(launcher: LAUNCHERType2) {
     val oozieLAUNCHERType2 = launcher
+  }
+
+  object Launcher {
     def apply(
       memoryMb: Option[Int],
       vCores: Option[Int],
@@ -70,7 +73,7 @@ package object dsl {
 
   implicit class Configuration(configuration: CONFIGURATIONType4) {
     val oozieCONFIGURATIONType4 = configuration
-    def apply(name: String, value: String, description: Option[String] = None): Configuration = {
+    def add(name: String, value: String, description: Option[String] = None): Configuration = {
       oozieCONFIGURATIONType4.copy(property = oozieCONFIGURATIONType4.property :+ Property9(name, value, description))
     }
   }

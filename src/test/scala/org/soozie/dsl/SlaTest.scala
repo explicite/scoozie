@@ -18,7 +18,7 @@ class SlaTest extends FlatSpec with GivenWhenThen with Matchers {
       alertContact = Some(alertContact)
     )
 
-    When("XML is generate")
+    When("XML is generated")
     val xmlGenerated = sla.toXML(scope).toString()
 
     Then("is correct")
