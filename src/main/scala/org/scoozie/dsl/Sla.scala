@@ -2,7 +2,7 @@ package org.scoozie.dsl
 
 import org.scoozie.oozie.SLAu45INFOType
 
-trait Sla extends DSLElem[SLAu45INFOType] {
+trait Sla extends OozieElement[SLAu45INFOType] {
   protected val elementLabel = "sla:info"
   implicit override val canWriteXML = org.scoozie.oozie.Orgscoozieoozie_SLAu45INFOTypeFormat
 }

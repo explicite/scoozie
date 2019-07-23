@@ -66,7 +66,19 @@ package object dsl {
       )
 
     }
+  }
 
+  implicit class Configuration(configuration: CONFIGURATIONType4) {
+    val oozieCONFIGURATIONType4 = configuration
+    def apply(name: String, value: String, description: Option[String] = None): Configuration = {
+      oozieCONFIGURATIONType4.copy(property = oozieCONFIGURATIONType4.property :+ Property9(name, value, description))
+    }
+  }
+
+  object Configuration {
+    def apply(name: String, value: String, description: Option[String] = None): Configuration = {
+      CONFIGURATIONType4(Seq(Property9(name, value, description)))
+    }
   }
 
 }

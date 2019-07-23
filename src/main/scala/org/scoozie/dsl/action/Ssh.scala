@@ -1,16 +1,15 @@
 package org.scoozie.dsl.action
 
-import org.scoozie.dsl.DSLElem
+import org.scoozie.dsl.OozieElement
 import org.scoozie.oozie.ACTIONType7
 import org.scoozie.dsl._
 
-trait Ssh extends DSLElem[ACTIONType7] {
+trait Ssh extends OozieElement[ACTIONType7] {
   protected val elementLabel = "ssh"
   implicit override val canWriteXML = org.scoozie.oozie.Orgscoozieoozie_ACTIONType7Format
 }
 
 object Ssh {
-
   def apply(
     host: String,
     command: String,
